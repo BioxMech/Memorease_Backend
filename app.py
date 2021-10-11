@@ -181,14 +181,6 @@ def bathroom(s):
     logger.info("Writing to serial port: i, 0")
     s.write(f"i,0\r".encode())
 
-# Handles incoming serial data by making requests
-def serial_data_requests(s: serial.Serial) -> None:
-    data = f"{s.readline().decode('utf-8').strip()}"
-    data_list = data.split(":")
-    print(data)
-    response = requests.get("http://127.0.0.1:5000/complete")
-    print(response.status_code)
-
 def cycle_from_dweet():
     try:
         print("Listening to updates from dweet thing 'memorease'...")
