@@ -22,7 +22,11 @@ def on_received_string(receivedString):
         # Show an icon or clear the screen depending on the value of val
         if val == 1:
             basic.show_icon(IconNames.ASLEEP)
-            soundExpression.giggle.play()
+            # soundExpression.giggle.play()
+            music.play_melody("- A G F G A A A ", 120)
+            music.play_melody("G G G A C5 C5 A G ", 120)
+            music.play_melody("F G A A A F G G ", 120)
+            music.play_melody("A G F - - - - - ", 120)
 radio.on_received_string(on_received_string)
 
 followed = 0

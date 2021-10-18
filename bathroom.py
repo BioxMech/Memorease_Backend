@@ -1,7 +1,12 @@
 def on_button_pressed_a():
-    basic.show_icon(IconNames.EIGTH_NOTE)
+    basic.show_icon(IconNames.NO)
     radio.send_value("stop", 9)
 input.on_button_pressed(Button.A, on_button_pressed_a)
+
+def on_button_pressed_ab():
+    basic.show_icon(IconNames.NO)
+    radio.send_value("stop", 9)
+input.on_button_pressed(Button.AB, on_button_pressed_ab)
 
 # Handle a message received from the radio
 # elif val == 0:
@@ -22,8 +27,16 @@ def on_received_string(receivedString):
         # Show an icon or clear the screen depending on the value of val
         if val == 0:
             basic.show_icon(IconNames.ASLEEP)
-            soundExpression.giggle.play()
+            # soundExpression.giggle.play()
+            music.play_melody("G C C C D E E E ", 120)
+            music.play_melody("D C D E C - E E ", 120)
+            music.play_melody("F G G F E F G E ", 120)
 radio.on_received_string(on_received_string)
+
+def on_button_pressed_b():
+    basic.show_icon(IconNames.NO)
+    radio.send_value("stop", 9)
+input.on_button_pressed(Button.B, on_button_pressed_b)
 
 followed = 0
 val = 0
