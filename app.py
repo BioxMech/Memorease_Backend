@@ -20,8 +20,13 @@ import time
 import datetime
 import threading
 import dweepy
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
-
+cred = credentials.Certificate("memorease-9a0bf-firebase-adminsdk-czypx-5d75f1b2e8.json")
+firebase_admin.initialize_app(cred)
+db = firestore.client()
 # Configure logging
 # logging.basicConfig(format=settings.LOGGING["format"], datefmt=settings.LOGGING["datefmt"], level=settings.LOGGING["level"])
 logging.basicConfig(
@@ -154,6 +159,13 @@ def main(location) -> None:
           time.sleep(1.5)
           if 'stop' in latest_dweet or s.in_waiting > 0:
               print("Stopping reminder alarm...")
+              data = {
+                u'audioUrl': u'',
+                u'body': u'',
+                u'imageUrl': u'',
+                u'location': u''
+            }
+              db.collection(u'message').document(u'displayed').set(data)
               break
 
         cycle_from_dweet()
